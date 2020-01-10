@@ -3,7 +3,11 @@ package fr.gtm.projet.voyage_mock.entities;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * 
+ * @author Amine et Myriam
+ *
+ */
 public class Voyageur {
 	
 	private String civilite;

@@ -5,7 +5,14 @@ import java.util.List;
 
 import fr.gtm.projet.destination_mock.entities.Destination;
 import fr.gtm.projet.destination_mock.entities.Formule;
+ 
 
+/**
+ * 
+ * @author Amine et Myriam
+ * 
+ * Interface offrant le vocabulaire méthode pour travailler sur les classes liées au destinationMock.
+ */
 public interface DestinationDao {
 //les fonction qui vont etre definie dans mock dao
 	

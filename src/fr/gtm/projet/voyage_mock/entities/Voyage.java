@@ -7,7 +7,11 @@ import java.util.List;
 import fr.gtm.projet.destination_mock.entities.Destination;
 import fr.gtm.projet.destination_mock.entities.Formule;
 import fr.gtm.projet.voyage_mock.dao.VoyageMockDao;
-
+/**
+ * 
+ * @author Amine et Myriam
+ *Classe voyage
+ */
 public class Voyage {
 	
 	private Long id;
@@ -22,7 +26,12 @@ public class Voyage {
 	}
 
 	
-
+/**
+ * 
+ * @param list
+ * 
+ * le code tient compte du cahier des charges qui limite à 9 personnes le nombre de Voyageurs dans un Voyage
+ */
 	public void addVoyageur(List<Voyageur> list) {
 		
 		if (list.size()<=9) {
@@ -72,6 +81,16 @@ public class Voyage {
 		return (formule.getPrix()*getVoyageurs().size());
 	}
 	
+	/**
+	 * 
+	 * @param voyageurs
+	 * 
+	 * La méthode permet d'ajouter dans la liste IdVoyageur du Voyageur l'id du Voyage 
+	 * Permet de retrouver rapidement les voyages auxquels a participé un voyageur
+	 * 
+	 * @see List<Voyage> findVoyagesbyVoyageur(Voyageur v1)
+	 *  qui renvoie la liste des voyages
+	 */
 	public void attribuerIdVoyage(List<Voyageur> voyageurs) {
 		
 		for (Voyageur voyageur : voyageurs) {

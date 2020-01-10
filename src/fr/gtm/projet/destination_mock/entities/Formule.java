@@ -1,7 +1,13 @@
 package fr.gtm.projet.destination_mock.entities;
 
 import java.time.LocalDate;
-
+/**
+ * 
+ * @author Amine et Myriam
+ * 
+ * Classe publique pour les objets de type Destination
+ *
+ */
 public class Formule {
 
 	private LocalDate aller;

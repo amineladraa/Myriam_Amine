@@ -7,12 +7,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sun.security.ntlm.Client;
+
 
 import fr.gtm.projet.destination_mock.DAO.DestinationMockDao;
 import fr.gtm.projet.destination_mock.entities.Destination;
 import fr.gtm.projet.destination_mock.entities.Formule;
 import fr.gtm.projet.voyage_mock.dao.VoyageMockDao;
+import fr.gtm.projet.voyage_mock.entities.Client;
 import fr.gtm.projet.voyage_mock.entities.Voyage;
 import fr.gtm.projet.voyage_mock.entities.Voyageur;
 
@@ -25,8 +26,8 @@ public class VoyageMockDaoTest {
 		Voyage v2 = new Voyage();
 		
 		assertNull(v1.getId());
-		assertNull(v1.getF());
-		assertNull(v1.getD());
+		assertNull(v1.getFormule());
+		assertNull(v1.getDestination());
 		VoyageMockDao dao = new VoyageMockDao();
 		dao.creer(v1);
 		dao.creer(v2);
@@ -65,36 +66,22 @@ public class VoyageMockDaoTest {
 		assertEquals(b,v2.getId());
 	}
 	
-//	@Test
-//	public void testSupprimerClient() {
-//		Client c1 = new Client("toto","0750241520");
-//		Client c2 = new Client("titi","0650245210");
-//		VoyageMockDao dao = new VoyageMockDao();
-//		dao.creer(c1);
-//		dao.creer(c2);
-//		Long a = 1L, b=2L;
-//		assertEquals(a,c1.getId());
-//		assertEquals(b,c2.getId());
-//		dao.supprimer(c1);
-//		assertNull(c1.getId());
-//		assertEquals(b,c2.getId());
-//	}
 
 	@Test
 	public void testUpdateVoyage() {
 		Voyage v1 = new Voyage();
-		Voyage v2=new Voyage();
 		VoyageMockDao dao= new VoyageMockDao();
-		Destination d= v2.getD();
-		Formule f= v2.getF();
+		Formule f= new Formule();
+		Destination d = new Destination("Lyon");
+		v1.setDestination(d);
+		v1.setFormule(f);		
 		List<Voyageur> voyageurs= new ArrayList <>();
 		Voyageur m1= new Voyageur("toto");
 		Voyageur m2 = new Voyageur("titi");
 		voyageurs.add(m1);
 		voyageurs.add(m2);
-		v2.addVoyageur(voyageurs);
-		dao.update(v1, d,f,
-		assertEquals(v2, v1);
+		dao.update(v1, d,f,voyageurs);
+		assertEquals(d, v1.getDestination());
 	
 	}
 
@@ -110,15 +97,18 @@ public class VoyageMockDaoTest {
 		assertNull(dao.findVoyageById(b));
 	}
 
-//	@Test
-//	public void testFindVoyageByClient() {
-//		Voyage v1 = new Voyage();
-//		Voyage v2 = new Voyage();
-//		VoyageMockDao dao = new VoyageMockDao();
-//		Client c1 = new Client("toto","0605421450");
-//	
-//	}
-//
+	@Test
+	public void testFindVoyageByClient() {
+		Voyage v1 = new Voyage();
+		Voyage v2 = new Voyage();
+		VoyageMockDao dao = new VoyageMockDao();
+		Client c1 = new Client("toto","0605421450");
+		c1.addVoyage(v1);
+		c1.addVoyage(v2);
+		assertEquals(2,dao.findVoyageByClient(c1).size());
+	
+	}
+
 	@Test
 	public void testFindVoyagesbyVoyageur() {
 		Voyageur v1 = new Voyageur("Gaston");

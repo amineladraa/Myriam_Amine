@@ -3,7 +3,13 @@ package fr.gtm.projet.destination_mock.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 
+ * @author Amine et Myriam
+ * 
+ * Classe publique pour les objets de type Destination
+ *
+ */
 public class Destination {
 
 	private String nom;

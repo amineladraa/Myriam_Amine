@@ -15,24 +15,37 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 	List<Voyage> voyages = new ArrayList<Voyage>();
 	List<Voyageur> voyageurs = new ArrayList<Voyageur>();
 	List<Client>clients =new ArrayList<Client>();
-
+	/**
+	 * id est la variable qui permet la gestion des identifiants BDD sans redondance à partir de 1 
+	 * Le constructeur permet de réinitialiser à 0 la variable id 
+	 * 
+	 * Cela permet de ne pas provoquer des problemes sur JUnit
+	 */
 	public VoyageMockDao() {
 		id=0L;
 	}
 
+	/**
+	 * Méthode qui permet de creer le Voyage sur la BDD VoyageMock et non de creer l'objet
+	 */
 	@Override
-
 	public void creer(Voyage v) {
 	v.setId(++id);
 	voyages.add(v);
 	}
 	
+	/**
+	 * Méthode qui permet de creer le Client sur la BDD VoyageMock et non de creer l'objet
+	 */
 	@Override
 	public void creer(Client c) {
 	c.setId(++id);
 	clients.add(c);
 	}
 	
+	/**
+	 * Méthode qui permet de creer le Voyageur sur la BDD VoyageMock et non de creer l'objet
+	 */
 	@Override
 	public void creer(Voyageur v1) {
 	v1.setId(++id);
@@ -47,8 +60,8 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 
 	@Override
 	public void update (Voyage v, Destination d, Formule f, List<Voyageur> voyageurs) {
-		v.setD(d);
-		v.setF(f);
+		v.setDestination(d);
+		v.setFormule(f);
 		v.addVoyageur(voyageurs);
 	}
 	public void supprimer(Client c) {
