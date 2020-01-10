@@ -11,9 +11,8 @@ import fr.gtm.projet.voyage_mock.dao.VoyageMockDao;
 public class Voyage {
 	
 	private Long id;
-	private Formule f;
-	private Destination d;
-
+	private Formule formule;
+	private Destination destination;
 	private String region;
 	private String descriptif;
 	private VoyageMockDao voyageMockDao;
@@ -24,9 +23,7 @@ public class Voyage {
 		return voyageurs;
 	}
 
-	public void setVoyageurs(List<Voyageur> voyageurs) {
-		this.voyageurs = voyageurs;
-	}
+	
 
 	public void addVoyageur(List<Voyageur> list) {
 		
@@ -41,24 +38,21 @@ public class Voyage {
 		return voyageMockDao;
 	}
 
-	public void setVoyageMockDao(VoyageMockDao voyageMockDao) {
-		this.voyageMockDao = voyageMockDao;
-	}
 
 	public Formule getF() {
-		return f;
+		return formule;
 	}
 
 	public void setF(Formule f) {
-		this.f = f;
+		this.formule = f;
 	}
 
 	public Destination getD() {
-		return d;
+		return destination;
 	}
 
 	public void setD(Destination d) {
-		this.d = d;
+		this.destination = d;
 	}
 
 	public Voyage() {
@@ -91,19 +85,19 @@ public class Voyage {
 	}
 	
 	public double getPrix() {
-		return f.getPrix();
+		return formule.getPrix();
 	}
 	
 	public void commander(Voyage v,List<Voyageur> voyageurs) {
-		if(voyageurs.size()<=f.getNbPlace()) {
-			this.setD(this.d);
-			this.setF(this.f);
+		if(voyageurs.size()<=formule.getNbPlace()) {
+			this.setD(this.destination);
+			this.setF(this.formule);
 			this.addVoyageur(voyageurs);
 			voyageMockDao.creer(v);
 			for (Voyageur voyageur : voyageurs) {
 				voyageur.addIdVoyage(v.getId());
 			}
-			f.setNbPlace(f.getNbPlace()-voyageurs.size());
+			formule.setNbPlace(formule.getNbPlace()-voyageurs.size());
 		}
 	}
 
