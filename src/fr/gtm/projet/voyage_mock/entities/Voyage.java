@@ -13,8 +13,6 @@ public class Voyage {
 	private Long id;
 	private Formule formule;
 	private Destination destination;
-	private String region;
-	private String descriptif;
 	private VoyageMockDao voyageMockDao;
 	List <Voyageur> voyageurs = new ArrayList<Voyageur>();
 	
@@ -39,20 +37,20 @@ public class Voyage {
 	}
 
 
-	public Formule getF() {
+	public Formule getFormule() {
 		return formule;
 	}
 
-	public void setF(Formule f) {
-		this.formule = f;
+	public void setFormule(Formule formule) {
+		this.formule = formule;
 	}
 
-	public Destination getD() {
+	public Destination getDestination() {
 		return destination;
 	}
 
-	public void setD(Destination d) {
-		this.destination = d;
+	public void setDestination(Destination destination) {
+		this.destination = destination;
 	}
 
 	public Voyage() {
@@ -60,21 +58,7 @@ public class Voyage {
 		
 	}
 
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
-
-	public String getDescriptif() {
-		return descriptif;
-	}
-
-	public void setDescriptif(String descriptif) {
-		this.descriptif = descriptif;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -85,20 +69,15 @@ public class Voyage {
 	}
 	
 	public double getPrix() {
-		return formule.getPrix();
+		return (formule.getPrix()*getVoyageurs().size());
 	}
 	
-	public void commander(Voyage v,List<Voyageur> voyageurs) {
-		if(voyageurs.size()<=formule.getNbPlace()) {
-			this.setD(this.destination);
-			this.setF(this.formule);
-			this.addVoyageur(voyageurs);
-			voyageMockDao.creer(v);
-			for (Voyageur voyageur : voyageurs) {
-				voyageur.addIdVoyage(v.getId());
+	public void attribuerIdVoyage(List<Voyageur> voyageurs) {
+		
+		for (Voyageur voyageur : voyageurs) {
+				voyageur.addIdVoyage(this.getId());
 			}
-			formule.setNbPlace(formule.getNbPlace()-voyageurs.size());
-		}
+		
 	}
 
 }
