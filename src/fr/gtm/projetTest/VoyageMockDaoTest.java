@@ -4,55 +4,83 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.sun.security.ntlm.Client;
+
 import fr.gtm.projet.destination_mock.DAO.DestinationMockDao;
 import fr.gtm.projet.destination_mock.entities.Destination;
+import fr.gtm.projet.destination_mock.entities.Formule;
+import fr.gtm.projet.voyage_mock.dao.VoyageMockDao;
 import fr.gtm.projet.voyage_mock.entities.Voyage;
 
 public class VoyageMockDaoTest {
 
 
+	@Test
+	public void testCreerVoyage() {
+		Voyage v1 = new Voyage();
+		Voyage v2 = new Voyage();
+		
+		assertNull(v1.getId());
+		assertNull(v1.getF());
+		assertNull(v1.getD());
+		VoyageMockDao dao = new VoyageMockDao();
+		dao.creer(v1);
+		dao.creer(v2);
+		Long a = 1L , b=2L;
+		assertEquals(a,v1.getId());
+		assertEquals(b,v2.getId());
+	}
+
+	@Test
+	public void testSupprimerVoyage() {
+		Voyage v1 = new Voyage();
+		Voyage v2 = new Voyage();
+		VoyageMockDao dao = new VoyageMockDao();
+		dao.creer(v1);
+		dao.creer(v2);
+		Long a = 1L, b=2L;
+		assertEquals(a,v1.getId());
+		assertEquals(b,v2.getId());
+		dao.supprimer(v1);
+		assertNull(v1.getId());
+		assertEquals(b,v2.getId());
+	}
+
 //	@Test
-//	public void testCreer() {
-//		Voyage v1 = new Voyage();
-//		Voyage v2 = new Voyage();
+//	public void testUpdateVoyage() {
+//		Voyage v = new Voyage();
+//		v.setD(d);
+//		v.setF(f);
+//		v.setVoyageurs(voyageurs);
 //		
-//		
-//		
-//		assertNull(v1.getId(),v1.getD(),v1.getF());
-//		assertNull(v2.getId(),v2.getD(),v2.getF());
-//		DestinationMockDao dao = new DestinationMockDao();
-//		dao.creer(d1);
-//		dao.creer(d3);
-//		dao.creer(d2);
-//		Long a = 1L , b=2L , c=3L;
-//		assertEquals(a,d1.getId());
-//		assertEquals(b,d3.getId());
-//		assertEquals(c,d2.getId());
 //	}
 
 	@Test
-	public void testSupprimer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testFindVoyageById() {
-		fail("Not yet implemented");
+		Voyage v1 = new Voyage();
+		Voyage v2 = new Voyage();
+		VoyageMockDao dao= new VoyageMockDao();
+		dao.creer(v1);
+		dao.creer(v2);
+		Long a = 1L, b=3L;
+		assertEquals(v1,dao.findVoyageById(a));
+		assertNull(dao.findVoyageById(b));
 	}
 
 	@Test
 	public void testFindVoyageByClient() {
-		fail("Not yet implemented");
+		Voyage v1 = new Voyage();
+		Voyage v2 = new Voyage();
+		VoyageMockDao dao = new VoyageMockDao();
+		Client c1= new Client("Gaston", "06540125");
+		
+		
+		
 	}
-
-	@Test
-	public void testFindVoyagesbyVoyageur() {
-		fail("Not yet implemented");
-	}
+//
+//	@Test
+//	public void testFindVoyagesbyVoyageur() {
+//		fail("Not yet implemented");
+//	}
 
 }

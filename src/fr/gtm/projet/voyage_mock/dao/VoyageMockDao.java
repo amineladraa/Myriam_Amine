@@ -41,9 +41,8 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 
 	@Override
 	public void supprimer(Voyage v) {
-	voyages.remove(v);
-	Long a=0L;
-	v.setId(a);
+	voyages.remove(voyages.indexOf(v));
+	v.setId(null);
 	}
 
 	@Override
