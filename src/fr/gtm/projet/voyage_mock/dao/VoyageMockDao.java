@@ -52,9 +52,8 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 		v.addVoyageur(voyageurs);
 	}
 	public void supprimer(Client c) {
-	clients.remove(c);
-	Long a=0L;
-	c.setId(a);
+	clients.remove(clients.indexOf(c));
+	c.setId(null);
 	}
 
 	@Override
@@ -64,9 +63,8 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 		
 	}
 	public void supprimer(Voyageur v1) {
-		voyageurs.remove(v1);
-		Long a=0L;
-		v1.setId(a);
+		voyageurs.remove(voyageurs.indexOf(v1));
+		v1.setId(null);
 		}
 	
 	@Override
@@ -85,8 +83,8 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 	
 	@Override
 	public List<Voyage> findVoyagesbyVoyageur(Voyageur v1) {
-		List<Voyage> voyages = new ArrayList<Voyage>();
-		for (Long idVoyage : v1.getIdVoyages()) {
+			List<Voyage> voyages = new ArrayList<Voyage>();
+			for (Long idVoyage : v1.getIdVoyages()) {
 			Voyage v=findVoyageById(idVoyage);
 			voyages.add(v);
 		}
