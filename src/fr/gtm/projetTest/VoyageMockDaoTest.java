@@ -72,7 +72,7 @@ public class VoyageMockDaoTest {
 		Voyage v1 = new Voyage();
 		Voyage v2 = new Voyage();
 		VoyageMockDao dao = new VoyageMockDao();
-		Client c1= new Client("Gaston", "06540125");
+		Client c1 = new Client("toto","0605421450");
 		
 		
 		
