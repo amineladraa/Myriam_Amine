@@ -16,6 +16,7 @@ public class VoyageMockDaoTest {
 		Voyage v1 = new Voyage();
 		Voyage v2 = new Voyage();
 		
+		
 		assertNull(v1.getId(),v1.getD(),v1.getF());
 		assertNull(v2.getId(),v2.getD(),v2.getF());
 		DestinationMockDao dao = new DestinationMockDao();
