@@ -22,5 +22,13 @@ public interface VoyageDao {
 
 	List<Voyage> findVoyagesbyVoyageur(Voyageur v1);
 
+	void creer(Client c);
+
+	void creer(Voyageur v1);
+
+	void update(Client c, String nom, String numero);
+	
+	
+
 
 }

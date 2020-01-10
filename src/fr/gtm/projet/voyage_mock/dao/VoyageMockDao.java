@@ -14,6 +14,7 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 	private static Long id=0L;
 	List<Voyage> voyages = new ArrayList<Voyage>();
 	List<Voyageur> voyageurs = new ArrayList<Voyageur>();
+	List<Client>clients =new ArrayList<Client>();
 
 	public VoyageMockDao() {
 		id=0L;
@@ -28,14 +29,14 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 	
 	@Override
 	public void creer(Client c) {
-	v.setId(++id);
-	voyages.add(c);
+	c.setId(++id);
+	clients.add(c);
 	}
 	
 	@Override
 	public void creer(Voyageur v1) {
-	v.setId(++id);
-	voyages.add(v1);
+	v1.setId(++id);
+	voyageurs.add(v1);
 	}
 
 	@Override
@@ -51,6 +52,23 @@ import fr.gtm.projet.voyage_mock.entities.Voyageur;
 		v.setF(f);
 		v.addVoyageur(voyageurs);
 	}
+	public void supprimer(Client c) {
+	clients.remove(c);
+	Long a=0L;
+	c.setId(a);
+	}
+
+	@Override
+	public void update (Client c, String nom, String numero ) {
+		c.setNom(nom);
+		c.setNumero(numero);
+		
+	}
+	public void supprimer(Voyageur v1) {
+		voyageurs.remove(v1);
+		Long a=0L;
+		v1.setId(a);
+		}
 	
 	@Override
 	public Voyage findVoyageById(Long id) {
